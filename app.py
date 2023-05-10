@@ -24,3 +24,17 @@ def previsao(ar: str, info: str, horas: int):
             'previsao' : previsoes.to_dict()
             }
         return jsonify(resposta)
+    if ar == 'semar' and info == 'tempar':
+        with open('modelos/tempar/model_semar', 'rb') as f:
+            modelo_salvo_comar = pickle.load(f)
+
+        horas = int(horas)
+
+        previsoes = modelo_salvo_comar.predict(horas)
+        index_str = previsoes.index.astype('str')
+        previsoes = previsoes.reindex(index_str)
+        resposta = {
+            'anteriores': 'anteriores',
+            'previsao' : previsoes.to_dict()
+            }
+        return jsonify(resposta)
