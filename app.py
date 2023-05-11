@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
 import pickle
 import pandas as pd
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
 def hello_world():
