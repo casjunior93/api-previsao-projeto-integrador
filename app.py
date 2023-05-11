@@ -4,7 +4,6 @@ import pandas as pd
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
 def hello_world():
@@ -27,7 +26,9 @@ def previsao(ar: str, info: str, horas: int):
             'anteriores': ultimas_horas_com_ar,
             'previsao' : previsoes.to_dict()
             }
-        return jsonify(resposta)
+        response = jsonify(resposta)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     if ar == 'semar' and info == 'tempar':
         with open('modelos/tempar/model_semar', 'rb') as f:
             modelo_salvo_comar = pickle.load(f)
@@ -43,4 +44,6 @@ def previsao(ar: str, info: str, horas: int):
             'anteriores': ultimas_horas_sem_ar,
             'previsao' : previsoes.to_dict()
             }
-        return jsonify(resposta)
+        response = jsonify(resposta)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
