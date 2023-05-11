@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import pickle
 import pandas as pd
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return render_template('base.html')
 
 @app.route('/previsao/<ar>/<info>/<horas>', methods=['GET'])
 def previsao(ar: str, info: str, horas: int):
