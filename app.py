@@ -1,7 +1,6 @@
 from flask import Flask, jsonify
 import pickle
 import pandas as pd
-from flask_cors import CORS
 
 app = Flask(__name__)
 
