@@ -13,6 +13,8 @@ def previsao(ar: str, info: str, horas: int):
     if ar == 'comar' and info == 'tempar':
         with open('modelos/tempar/model_comar', 'rb') as f:
             modelo_salvo_comar = pickle.load(f)
+        with open('modelos/tempar/ultimas_horas_com_ar.p', 'rb') as f:
+            ultimas_horas_com_ar = pickle.load(f)
 
         horas = int(horas)
 
@@ -20,13 +22,15 @@ def previsao(ar: str, info: str, horas: int):
         index_str = previsoes.index.astype('str')
         previsoes = previsoes.reindex(index_str)
         resposta = {
-            'anteriores': 'anteriores',
+            'anteriores': ultimas_horas_com_ar,
             'previsao' : previsoes.to_dict()
             }
         return jsonify(resposta)
     if ar == 'semar' and info == 'tempar':
         with open('modelos/tempar/model_semar', 'rb') as f:
             modelo_salvo_comar = pickle.load(f)
+        with open('modelos/tempar/ultimas_horas_sem_ar.p', 'rb') as f:
+            ultimas_horas_sem_ar = pickle.load(f)
 
         horas = int(horas)
 
@@ -34,7 +38,7 @@ def previsao(ar: str, info: str, horas: int):
         index_str = previsoes.index.astype('str')
         previsoes = previsoes.reindex(index_str)
         resposta = {
-            'anteriores': 'anteriores',
+            'anteriores': ultimas_horas_sem_ar,
             'previsao' : previsoes.to_dict()
             }
         return jsonify(resposta)
