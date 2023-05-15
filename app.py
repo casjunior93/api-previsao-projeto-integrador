@@ -22,7 +22,7 @@ def previsao(ar: str, info: str, horas: int):
         index_str = previsoes.index.astype('str')
         previsoes = previsoes.reindex(index_str)
         resposta = {
-            'treinamento': '2023-05-12 09:00:00',
+            'treinamento': '2023-05-15 07:33:00',
             'anteriores': ultimas_horas_com_ar,
             'previsao' : previsoes.to_dict()
             }
@@ -41,7 +41,7 @@ def previsao(ar: str, info: str, horas: int):
         index_str = previsoes.index.astype('str')
         previsoes = previsoes.reindex(index_str)
         resposta = {
-            'treinamento': '2023-05-12 09:00:00',
+            'treinamento': '2023-05-15 07:33:00',
             'anteriores': ultimas_horas_sem_ar,
             'previsao' : previsoes.to_dict()
             }
